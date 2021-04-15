@@ -43,6 +43,7 @@ Installing `mrs_denoising_tools` from the `conda-forge` channel can be achieved 
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `mrs_denoising_tools` can be installed with:
