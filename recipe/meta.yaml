@@ -6,26 +6,29 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 08e7e3ec7e49f3728a60a140d3235912e6f5c0ac2f1ad92a61b930d71c36def4
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - mrsi_denoise = mrs_denoising.mrsi_denoise:main
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - numpy
     - nibabel
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - mrs_denoising
   commands:
